@@ -1,0 +1,9 @@
+{
+  "title": "JupyterLab Notebook messages",
+  "description": "JupyterLab Notebook messages settings.",
+  "type": "object",
+  "properties": {},
+  "additionalProperties": false,
+  "jupyter.lab.shortcuts": [],
+  "jupyter.lab.toolbars": {}
+}
