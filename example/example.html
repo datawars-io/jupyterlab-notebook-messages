@@ -1,0 +1,82 @@
+<html>
+  <meta charset="utf-8" />
+
+  <body>
+    <div
+      style="
+        display: flex;
+        flex-direction: row-reverse;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+      "
+    >
+      <iframe
+        id="myIframe"
+        width="1280"
+        height="800"
+        name="testiframe"
+        src="http://localhost:8888/notebooks/Untitled.ipynb"
+      ></iframe>
+
+      <div
+        style="
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 12px;
+        "
+      >
+        <button onclick="goToCellIndex(0)">Go to CELL index 0</button>
+        <button onclick="goToCellIndex(1)">Go to CELL index 1</button>
+        <button onclick="goToCellIndex(2)">Go to CELL index 2</button>
+        <button onclick="goToCellIndex(12)">Go to CELL index 12</button>
+        <button onclick="goToCellIndex(32)">Go to CELL index 32</button>
+        <hr />
+        <button onclick="goToCellMetadata('custom_value')">
+          Go to CELL custom_key: custom_value
+        </button>
+        <button onclick="goToCellMetadata('???')">
+          Go to CELL custom_key: ????
+        </button>
+        <hr />
+        <button onclick="toggleTheme()">✨</button>
+      </div>
+    </div>
+
+    <script>
+      const goToCellIndex = targetCellIndex => {
+        console.log('[HOST] send message:', location.origin);
+        const iframe = document.getElementById('myIframe');
+        const message = JSON.stringify({
+          type: 'go-to-cell-index',
+          targetCellIndex: targetCellIndex
+        });
+        iframe.contentWindow.postMessage(message, '*');
+      };
+
+      const goToCellMetadata = targetMetadataValue => {
+        console.log('[HOST] send message:', location.origin);
+        const iframe = document.getElementById('myIframe');
+        const message = JSON.stringify({
+          type: 'go-to-cell-metadata',
+          targetMetadataKey: 'custom_key',
+          targetMetadataValue: targetMetadataValue
+        });
+        iframe.contentWindow.postMessage(message, '*');
+      };
+
+      const toggleTheme = () => {
+        console.log('[HOST] send message:', location.origin);
+        const iframe = document.getElementById('myIframe');
+        const message = JSON.stringify({ type: 'toggle-theme' });
+        iframe.contentWindow.postMessage(message, '*');
+      };
+
+      // TODO: incoming messages management
+      // window.addEventListener('message', (event) => {
+      //   console.log('[HOST] read message:', event);
+      // });
+    </script>
+  </body>
+</html>

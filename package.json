@@ -1,7 +1,7 @@
 {
     "name": "jupyterlab-notebook-messages",
     "version": "0.1.0",
-    "description": "A JupyterLab extension to read messages via JavaScript API.",
+    "description": "A JupyterLab extension to communicate between a host page and a Jupyter instance running in an iframe.",
     "keywords": [
         "jupyter",
         "jupyterlab",
@@ -56,6 +56,9 @@
     },
     "dependencies": {
         "@jupyterlab/application": "^4.0.0",
+        "@jupyterlab/apputils": "^4.3.5",
+        "@jupyterlab/cells": "^4.2.5",
+        "@jupyterlab/notebook": "^4.2.5",
         "@jupyterlab/settingregistry": "^4.0.0",
         "@jupyterlab/ui-components": "^4.1.6",
         "dayjs": "^1.11.10"
